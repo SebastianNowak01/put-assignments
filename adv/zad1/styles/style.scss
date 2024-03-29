@@ -1,0 +1,190 @@
+@import "reset.css";
+
+$border-color: #737373;
+$background-color: #e0e4cc;
+$title-colors: ("1": #69d2e7, "2": #e9aeaf, "3": #f38630);
+$solid-border: 1px solid #737373;
+$line-width: 50px;
+
+@each $title, $color in $title-colors {
+  .div-#{$title} {
+    .title{
+      background-color: $color;
+    }
+  }
+}
+
+.root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar{
+  margin: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  .logo{
+    height: 100px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .website-title{
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger{
+    height: 70px;
+    aspect-ratio: 1 / 1;
+    background-color: $background-color;
+    border: $solid-border;
+    border-radius: 20px;
+    margin: auto 0 auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .line{
+      height: 2px;
+      width: $line-width;
+      background-color: $border-color;
+    }
+    
+    .line::before{
+      content: "";
+      display: inline-block;
+      height: 2px;
+      width: $line-width;
+      background-color: $border-color;
+      margin-top: -20px;
+      position: absolute;
+    }
+    
+    .line::after{
+      content: "";
+      display: inline-block;
+      height: 2px;
+      width: $line-width;
+      background-color: $border-color;
+      margin-top: 20px;
+      position: absolute;
+    }
+  }
+  
+  ul {
+    position: absolute;
+    right: 5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    li{
+      padding: 0 1rem;
+    }
+  }
+}
+
+main{
+  display: flex;
+  flex-direction: row;
+  padding: 0 1.5rem 3rem 1.5rem;
+}
+
+.card{
+  background-color: $background-color;
+  border: $solid-border;
+  margin: 0 1.5rem;
+  
+  .title{
+    margin-left: auto;
+    width: 50%;
+    text-align: right;
+    border-bottom: 1px solid $border-color;
+    border-left: 1px solid $border-color;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  p{
+    text-align: justify;
+    margin: 2rem 1rem;
+  }
+}
+
+.footer{
+  margin-top: auto;
+  width: 100%;
+  padding: 2rem;
+  background-color: $background-color;
+  text-align: center;
+  border: $solid-border;
+}
+
+@media screen and (min-width: 1024px){
+  .navbar{
+    
+    .hamburger{
+      display: none;
+    }
+    
+    ul{
+      display: flex; 
+    }
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1024px){
+  .navbar{
+    
+    .hamburger{
+      display: flex;
+    }
+    
+    ul{
+      display: none;
+    }    
+  }
+
+  main{
+    flex-wrap: wrap;
+  }
+  
+  .div-1{
+    flex-basis: 100%;
+  }
+  
+  .div-2,
+  .div-3{
+    flex: 1;
+    margin: 3rem 1.5rem 0 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar{
+
+    .website-title{
+      display: none;
+    }
+    
+    .hamburger{
+      display: flex;
+    }
+    
+    ul{
+      display: none;
+    }    
+  }
+  
+  main {
+    flex-direction: column;
+  }
+
+  .card{
+    margin: 1.5rem;
+  }
+}
