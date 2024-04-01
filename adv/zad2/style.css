@@ -1,0 +1,28 @@
+*{
+  box-sizing: border-box;
+}
+
+
+.entry{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.entry > div,h2{
+  width: 250px;
+  margin-right: 5px;
+  padding: 0.5rem;
+}
+
+.entry > div > button{
+  margin-left: 10px;
+}
+
+.entry > h2{
+  text-align: center;
+}
+
+.entry:nth-child(even) > div{
+  background: lightgray;
+}
