@@ -11,7 +11,7 @@ function main(p: number, q: number) {
   }
   const N = p * q;
   let x0 = getX0(N);
-  console.log("x0: " + x0);
+  // console.log("x0: " + x0);
   let x1 = (x0 * x0) % N;
   const randomNumbers: number[] = [];
   randomNumbers.push(x1);

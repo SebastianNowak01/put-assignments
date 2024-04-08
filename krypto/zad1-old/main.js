@@ -8,7 +8,7 @@ function main(p, q) {
     }
     const N = p * q;
     let x0 = (0, helper_1.getX0)(N);
-    console.log("x0: " + x0);
+    // console.log("x0: " + x0);
     let x1 = (x0 * x0) % N;
     const randomNumbers = [];
     randomNumbers.push(x1);

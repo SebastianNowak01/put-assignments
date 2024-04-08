@@ -88,7 +88,6 @@ function seriesTestWrapper(bitArray: number[], bit: number): void {
   console.log(bit + "s series results: " + boolArray);
 }
 
-// do poprawy?
 function longSeriesTest(bitArray: number[], bit: number): void {
   let count = 0;
 
@@ -98,16 +97,16 @@ function longSeriesTest(bitArray: number[], bit: number): void {
     } else {
       count = 0;
       if (count >= 26) {
-        console.log("long series test for " + bit + "s: " + count + " false");
+        console.log("long series test for " + bit + "s: false");
         return;
       }
     }
   }
   if (count >= 26) {
-    console.log("long series test for " + bit + "s: " + count + " false");
+    console.log("long series test for " + bit + "s: false");
     return;
   }
-  console.log("long series test for " + bit + "s: " + count + " true");
+  console.log("long series test for " + bit + "s: true");
 }
 
 function pokerTest(bitArray: number[]): void {
@@ -133,7 +132,7 @@ function pokerTest(bitArray: number[]): void {
 }
 
 export function printTestResults(bitArray: number[]) {
-  console.log("single bits test: " + singleBits(bitArray));
+  console.log("single bits test:  " + singleBits(bitArray));
   seriesTestWrapper(bitArray, 1);
   seriesTestWrapper(bitArray, 0);
   longSeriesTest(bitArray, 1);

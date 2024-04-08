@@ -102,7 +102,6 @@ function seriesTestWrapper(bitArray, bit) {
     console.log(bit + "s series:         " + series);
     console.log(bit + "s series results: " + boolArray);
 }
-// do poprawy?
 function longSeriesTest(bitArray, bit) {
     let count = 0;
     for (const myBit of bitArray) {
@@ -112,16 +111,16 @@ function longSeriesTest(bitArray, bit) {
         else {
             count = 0;
             if (count >= 26) {
-                console.log("long series test for " + bit + "s: " + count + " false");
+                console.log("long series test for " + bit + "s: false");
                 return;
             }
         }
     }
     if (count >= 26) {
-        console.log("long series test for " + bit + "s: " + count + " false");
+        console.log("long series test for " + bit + "s: false");
         return;
     }
-    console.log("long series test for " + bit + "s: " + count + " true");
+    console.log("long series test for " + bit + "s: true");
 }
 function pokerTest(bitArray) {
     const numberCounter = new Array(16).fill(0);
@@ -146,7 +145,7 @@ function pokerTest(bitArray) {
         console.log("poker test: false");
 }
 function printTestResults(bitArray) {
-    console.log("single bits test: " + singleBits(bitArray));
+    console.log("single bits test:  " + singleBits(bitArray));
     seriesTestWrapper(bitArray, 1);
     seriesTestWrapper(bitArray, 0);
     longSeriesTest(bitArray, 1);
