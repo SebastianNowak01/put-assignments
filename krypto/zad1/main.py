@@ -1,12 +1,14 @@
 import random
-import math
-from helpers import *
+from helpers import generateX, singleBit, seriesTest, longSeriesTest, pokerTest, primesInRange
 
 
 def testResults(bits):
     print("single bit test: ", singleBit(bits))
+    print("series test 0: ", seriesTest(bits, 0))
+    print("series test 1: ", seriesTest(bits, 1))
     print("long series test: ", longSeriesTest(bits))
-    print(pokerTest(bits))
+    print("poker test: ", pokerTest(bits))
+
 
 def main():
     primes = primesInRange(1000, 10000)
@@ -21,5 +23,6 @@ def main():
         nums.append(nums[-1] ** 2 % N)
         bits.append(nums[-1] % 2)
     testResults(bits)
+
 
 main()
