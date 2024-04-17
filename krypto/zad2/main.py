@@ -17,9 +17,8 @@ def main():
     print("Decrypted: ", decrypted)
     print(message == decrypted)
 
-    # Diffie-Hellman 
+    # Diffie-Hellman
     n = random.choice(primes)
-    # g is primitive root modulo n
     g = random.choice(primitiveRoots(n))
     print(g, n)
     x = random.randint(1000, 9999)

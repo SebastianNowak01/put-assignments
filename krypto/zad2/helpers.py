@@ -65,7 +65,6 @@ def is_primitive_root(g, p):
     return True
 
 
-
 def primitiveRoots(p):
     primitive_roots = []
     for g in range(1, p):
