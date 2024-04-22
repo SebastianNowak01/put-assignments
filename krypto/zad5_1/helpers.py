@@ -30,6 +30,7 @@ def createShares(img):
             s2[i][j] = s2P
     return (s1, s2)
 
+
 def compareShares(s1, s2):
     height, width = len(s1), len(s1[0])
     diff = 0

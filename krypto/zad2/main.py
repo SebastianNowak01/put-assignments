@@ -20,9 +20,11 @@ def main():
     # Diffie-Hellman
     n = random.choice(primes)
     g = random.choice(primitiveRoots(n))
+    print("###Diffie-Hellman###")
     print(g, n)
     x = random.randint(1000, 9999)
     y = random.randint(1000, 9999)
+    print(x, y)
     X = pow(g, x, n)
     Y = pow(g, y, n)
     kA = pow(Y, x, n)

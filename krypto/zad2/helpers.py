@@ -2,8 +2,8 @@ import math
 import random
 import string
 
+
 def primesInRange(lower, upper):
-    """generate prime numbers in a given range."""
     primes = []
     for num in range(lower, upper):
         if num > 1:
@@ -54,7 +54,7 @@ def factor(n):
     return set(factors)
 
 
-def is_primitive_root(g, p):
+def isPrimitiveRoot(g, p):
     if pow(g, p - 1, p) != 1:
         return False
 
@@ -68,6 +68,6 @@ def is_primitive_root(g, p):
 def primitiveRoots(p):
     primitive_roots = []
     for g in range(1, p):
-        if is_primitive_root(g, p):
+        if isPrimitiveRoot(g, p):
             primitive_roots.append(g)
     return primitive_roots

@@ -1,8 +1,8 @@
 import math
 import random
 
+
 def primesInRange(lower, upper):
-    """generate prime numbers in a given range."""
     primes = []
     for num in range(lower, upper):
         if num > 1:
@@ -50,7 +50,7 @@ def seriesTest(bits, bit):
         current_series[min(current_length - 1, 5)] += 1
 
     for i in range(6):
-        if not correct_series.get(i + 1)[0] < current_series[i] < correct_series.get(i + 1)[1]:
+        if not correct_series[i + 1][0] < current_series[i] < correct_series[i + 1][1]:
             return False
     return True
 
