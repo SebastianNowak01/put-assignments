@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Quake 3",
+      "description": "Quake 3 is a first person shooter game that was released in 1999.",
+      "image": "./assets/quake.jpg",
+      "rating": 9
+    },
+    {
+      "id": "2",
+      "name": "Kangurek Kao",
+      "description": "Kangurek Kao is a 3D platformer game that was released in 2001.",
+      "image": "./assets/kangurek.jpg",
+      "rating": 9
+    },
+    {
+      "id": "3",
+      "name": "Alien Shooter",
+      "description": "Alien Shooter is a top-down shooter game that was released in 2003.",
+      "image": "./assets/alien.jpg",
+      "rating": 4
+    }
+  ]
+}

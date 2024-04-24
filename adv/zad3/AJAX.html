@@ -18,14 +18,14 @@
     </style>
     <script type="text/javascript">
       $(function () {
-	$('a').click(function () {
-	  $('#content').animate({height: '0px', width: '0px'}, () => {
-	    $('#content').load('AJAX' + $(this).attr('href'), () => {
-	      $('#content').animate({ height: '500px', width: '500px'});
-	    });
-	  });
-	  return false;
-	});
+        $("a").click(function () {
+          $("#content").animate({ height: "0px", width: "0px" }, () => {
+            $("#content").load("AJAX" + $(this).attr("href"), () => {
+              $("#content").animate({ height: "500px", width: "500px" });
+            });
+          });
+          return false;
+        });
       });
     </script>
   </head>
