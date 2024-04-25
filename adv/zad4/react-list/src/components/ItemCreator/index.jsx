@@ -18,8 +18,7 @@ export default function ItemCreator() {
     setRating(event.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     console.log("Name: ", name);
     console.log("Description: ", description);
     console.log("Rating: ", rating);
@@ -28,12 +27,12 @@ export default function ItemCreator() {
   return (
     <div className="item-creator">
       <h2>Create a new item</h2>
-      <form className="form-creator">
+      <div className="form-creator">
         <button
           type="submit"
           id="submit-button"
-          onSubmit={() => {
-            handleSubmit;
+          onClick={() => {
+            handleSubmit();
           }}
         >
           &#43;
@@ -60,7 +59,7 @@ export default function ItemCreator() {
             max={10}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
