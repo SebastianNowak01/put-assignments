@@ -12,6 +12,9 @@
   padding-top: 50px;
   margin-bottom: 50px;
   text-align: left;
+  border: 1px solid #ccc;
+  padding: 3rem;
+  border-radius: 2rem;;
 }
 
 .form-creator > div {
@@ -26,6 +29,6 @@
 
 #submit-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1rem;
+  right: 1rem;
 }

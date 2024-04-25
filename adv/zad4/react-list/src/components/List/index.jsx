@@ -4,10 +4,12 @@ import ListItem from "../ListItem/index";
 import ItemCreator from "../ItemCreator";
 import "./styles.css";
 import SearchBar from "../SearchBar";
+import Sorter from "../Sorter";
 
 export default function List() {
   const [items, setItems] = useState(list.data);
   const [searchText, setSearchText] = useState("");
+  const [sortType, setSortType] = useState("none");
 
   function addItem(item) {
     setItems([...items, item]);
@@ -23,27 +25,43 @@ export default function List() {
     setSearchText(search.toLowerCase());
   }
 
+  function sortItems(event) {
+    const sort = event.target.value;
+    setSortType(sort);
+  }
+
+  const listItems = items
+    .map((item) => {
+      return <ListItem props={item} key={item.id} deleteItem={deleteItem} />;
+    })
+    .filter((item) => {
+      if (searchText === "") {
+        return item;
+      } else if (item.props.props.name.toLowerCase().includes(searchText)) {
+        return item;
+      }
+    })
+    .sort((a, b) => {
+      if (sortType === "none") return 0;
+      if (sortType === "name") {
+        a = a.props.props.name.toLowerCase()[0];
+        b = b.props.props.name.toLowerCase()[0];
+        return a.localeCompare(b);
+      }
+      if (sortType === "rating") {
+        a = a.props.props.rating;
+        b = b.props.props.rating;
+        return b - a;
+      }
+    });
+
   return (
     <>
       <div>
         <ItemCreator addItem={addItem} />
+        <Sorter sortItems={sortItems} />
         <SearchBar searchItem={searchItems} />
-        {items
-          .map((item) => {
-            return (
-              <ListItem props={item} key={item.id} deleteItem={deleteItem} />
-            );
-          })
-          .filter((item) => {
-            console.log(item);
-            if (searchText === "") {
-              return item;
-            } else if (
-              item.props.props.name.toLowerCase().includes(searchText)
-            ) {
-              return item;
-            }
-          })}
+        {listItems}
       </div>
     </>
   );
