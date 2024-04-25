@@ -8,6 +8,13 @@ export default function ListItem(props) {
       <div>{values.name}</div>
       <div>{values.description}</div>
       <div>{values.rating}</div>
+      <button
+        onClick={() => {
+          props.deleteItem(values.id);
+        }}
+      >
+        &#8722;
+      </button>
     </div>
   );
 }

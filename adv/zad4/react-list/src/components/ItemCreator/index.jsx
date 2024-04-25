@@ -1,10 +1,17 @@
 import "./styles.css";
 import { useState } from "react";
 
-export default function ItemCreator() {
+export default function ItemCreator({ addItem }) {
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
+  let id = 4;
+
+  function handleImageChange(event) {
+    console.log(URL.createObjectURL(event.target.files[0]));
+    setImage(URL.createObjectURL(event.target.files[0]));
+  }
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -19,9 +26,15 @@ export default function ItemCreator() {
   }
 
   function handleSubmit() {
-    console.log("Name: ", name);
-    console.log("Description: ", description);
-    console.log("Rating: ", rating);
+    if (name && description && image && rating) {
+      addItem({ id, name, description, image, rating });
+      id++;
+      setName("");
+      setDescription("");
+      setRating(0);
+    } else {
+      alert("Please fill all the fields");
+    }
   }
 
   return (
@@ -37,6 +50,10 @@ export default function ItemCreator() {
         >
           &#43;
         </button>
+        <div>
+          <label>Image: </label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+        </div>
         <div>
           <label>Name:</label>
           <input type="text" value={name} onChange={handleNameChange} />
