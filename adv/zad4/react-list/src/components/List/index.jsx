@@ -11,6 +11,18 @@ export default function List() {
   const [searchText, setSearchText] = useState("");
   const [sortType, setSortType] = useState("none");
 
+  function changeRating(id, rating) {
+    const newItems = items.map((item) => {
+      console.log(item);
+      if (item.id === id) {
+        console.log(id);
+        item.rating = rating;
+      }
+      return item;
+    });
+    setItems(newItems);
+  }
+
   function addItem(item) {
     setItems([...items, item]);
   }
@@ -32,7 +44,14 @@ export default function List() {
 
   const listItems = items
     .map((item) => {
-      return <ListItem props={item} key={item.id} deleteItem={deleteItem} />;
+      return (
+        <ListItem
+          props={item}
+          key={item.id}
+          deleteItem={deleteItem}
+          changeRating={changeRating}
+        />
+      );
     })
     .filter((item) => {
       if (searchText === "") {

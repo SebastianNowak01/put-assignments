@@ -40,7 +40,7 @@ export default function ItemCreator({ addItem }) {
 
   return (
     <div className="item-creator">
-      <h2>Create a new item</h2>
+      <h2>Add a new item</h2>
       <div className="form-creator">
         <button
           type="submit"
