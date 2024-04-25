@@ -1,0 +1,31 @@
+.item-creator {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.form-creator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding-top: 50px;
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.form-creator > div {
+  margin: 10px;
+}
+
+
+.form-creator > div > label {
+  display: inline-block;
+  min-width: 120px;
+}
+
+#submit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
