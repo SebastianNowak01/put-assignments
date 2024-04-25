@@ -29,6 +29,7 @@ export default function ItemCreator({ addItem }) {
     if (name && description && image && rating) {
       addItem({ id, name, description, image, rating });
       id++;
+      setImage("");
       setName("");
       setDescription("");
       setRating(0);
