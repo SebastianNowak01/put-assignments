@@ -5,4 +5,9 @@
 </head>
 <body>
   <h1>Hello world!</h1>
+      <ul>
+        <% items.forEach(item => { %>
+            <li><%= JSON.stringify(item.name) %></li>
+        <% }); %>
+    </ul>
 </body>
