@@ -20,10 +20,8 @@ window.onload = function () {
   fetchData("https://jsonplaceholder.typicode.com/posts")
     .then(function (response) {
       console.log("Data received:", response);
-      // Here you can use the response data as needed
     })
     .catch(function (error) {
       console.error("Error:", error);
-      // Handle errors here
     });
 };

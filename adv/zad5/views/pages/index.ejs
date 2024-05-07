@@ -4,10 +4,20 @@
   <%- include('../partials/head'); %>
 </head>
 <body>
-  <h1>Hello world!</h1>
+  <h1>Welcome to S H O P!</h1>
+  <a href="/cart">C A R T</a>
       <ul>
         <% items.forEach(item => { %>
-            <li><%= JSON.stringify(item.name) %></li>
+          <li>
+            <%= item.name %>
+          <form method="post" action="/addToCart" style="display: inline-block">
+            <input type="hidden" name="productName" value=<%= item.name.replaceAll(" ", "_") %>>
+            <button type="submit" name="submit_param" value="submit_value">
+              +
+            </button>
+          </form>
+        </li>
         <% }); %>
     </ul>
 </body>
+</html>

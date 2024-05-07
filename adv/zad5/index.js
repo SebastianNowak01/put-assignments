@@ -1,20 +1,106 @@
 const express = require("express");
 const app = express();
+const session = require("express-session");
+const pgp = require("pg-promise")();
+const db = pgp("postgres://sebas@localhost:5432/sebas");
+const cookieParser = require("cookie-parser");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: "secret-key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  }),
+);
+app.use(cookieParser());
 app.set("view engine", "ejs");
+
+let PRODUCTS = [];
 
 app.get("/", (req, res) => {
   db.any("SELECT * FROM computer_names")
     .then((data) => {
-      res.render("pages/index", { items: data });
+      PRODUCTS = [...data];
+      console.log(PRODUCTS);
+      res.render("pages/index", { items: PRODUCTS });
     })
     .catch((error) => {
       console.log("ERROR:", error);
     });
 });
 
-const pgp = require("pg-promise")(/* options */);
-const db = pgp("postgres://sebas@localhost:5432/sebas");
+app.get("/cart", (req, res) => {
+  console.log(req.session.cart);
+  res.render("pages/cart", { cart: req.session.cart });
+});
+
+app.get("/thankYou", (req, res) => {
+  res.render("pages/thankYou");
+});
+
+app.post("/addToCart", async (req, res) => {
+  console.log(`Session: ${JSON.stringify(req.session)}`);
+  try {
+    if (!req.session.cart) {
+      req.session.cart = new Array();
+    }
+    const productName = req.body.productName.replaceAll("_", " ");
+    req.session.cart.push(productName);
+    console.log(PRODUCTS);
+    PRODUCTS = PRODUCTS.filter((p) => p.name != productName);
+    console.log(PRODUCTS);
+    console.log(`Added to cart: ${JSON.stringify(productName, null, 2)})}`);
+    console.info("Redirecting to /cart");
+    res.redirect("back"); // refresh the current page
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/checkout", async (req, res) => {
+  try {
+    if (!req.session.cart) {
+      console.log("Cart is empty");
+      res.status(400).send("Cart is empty");
+      return;
+    }
+    if (req.session.cart.length === 0) {
+      console.log("Cart is empty");
+      res.status(400).send("Cart is empty");
+      return;
+    }
+    console.log("Checkout successful, emptying cart");
+    req.session.cart = new Array();
+    res.redirect("/thankYou");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/removeFromCart", async (req, res) => {
+  console.log(`Session: ${JSON.stringify(req.session)}`);
+  try {
+    if (!req.session.cart) {
+      console.log("Cart is empty");
+      res.status(400).send("Cart is empty");
+      return;
+    }
+    const toRemoveName = req.body.productName.replaceAll("_", " ");
+    req.session.cart = req.session.cart.filter(
+      (productName) => productName !== toRemoveName,
+    );
+    console.log(`Removed from cart: ${toRemoveName})}`);
+    res.redirect("back");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
