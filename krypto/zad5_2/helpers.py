@@ -18,7 +18,7 @@ def calc_polynomial(coefficients, x, prime):
 
 
 def split_secret(secret, num_shares, threshold):
-    """Generate shares based on polynomial evaluation."""
+    """Generate shares based on calculated polynomial."""
     prime = randprime(secret + num_shares + threshold, 2 * (secret + num_shares + threshold))
     coefficients = []
     gen_polynomial(coefficients, secret, threshold, prime)
