@@ -9,7 +9,7 @@ def gen_polynomial(coefficients, secret, threshold, prime):
         coefficients.append(random.randint(1, prime - 1))
 
 
-def eval_polynomial(coefficients, x, prime):
+def calc_polynomial(coefficients, x, prime):
     """Calculate the value of the polynomial at x."""
     result = 0
     for coefficient in reversed(coefficients):
@@ -24,7 +24,7 @@ def split_secret(secret, num_shares, threshold):
     gen_polynomial(coefficients, secret, threshold, prime)
     shares = []
     for x in range(1, num_shares + 1):
-        share = (x, eval_polynomial(coefficients, x, prime))
+        share = (x, calc_polynomial(coefficients, x, prime))
         shares.append(share)
     return shares, prime
 
