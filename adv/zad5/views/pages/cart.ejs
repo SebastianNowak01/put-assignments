@@ -5,13 +5,23 @@
 </head>
 <body>
     <h1>Welcome to C A R T!</h1>
-      <ul>
-	<% if (cart.length != 0) {%>
-        <% cart.forEach(item => { %>
-          <li>
-            <%= item %>
-        </li>
-        <% })}; %>
+    <a href="/">Continue Shopping</a>
+    <ul>
+      <% cart.forEach(productName => { %>
+      <li><%= productName %>
+        <form method="post" action="/remove-from-cart" style="display: inline-block">
+          <input type="hidden" name="productName" value=<%= productName.replaceAll(' ', '_') %>>
+          <button type="submit" name="submit_param" value="submit_value">
+            Remove game
+          </button>
+        </form>
+      </li>
+      <% }) %>
     </ul>
+    <form method="post" action="/checkout">
+      <button type="submit" name="submit_param" value="submit_value">
+        Checkout cart
+      </button>
+    </form>
 </body>
 </html>
