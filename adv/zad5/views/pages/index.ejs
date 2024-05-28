@@ -10,7 +10,7 @@
         <% items.forEach(item => { %>
           <li>
             <%= item.name %>
-          <form method="post" action="/addToCart" style="display: inline-block">
+          <form method="post" action="/add-to-cart" style="display: inline-block">
             <input type="hidden" name="productName" value=<%= item.name.replaceAll(" ", "_") %>>
             <button type="submit" name="submit_param" value="submit_value">
               +

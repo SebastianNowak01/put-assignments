@@ -21,7 +21,7 @@ app.set("view engine", "ejs");
 let PRODUCTS = [];
 
 app.get("/", (req, res) => {
-  db.any("SELECT * FROM computer_names")
+  db.any("SELECT * FROM games")
     .then((data) => {
       PRODUCTS = [...data];
       console.log(PRODUCTS);
@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
     })
     .catch((error) => {
       console.log("ERROR:", error);
+      res.status(500).send("Internal Server Error");
     });
 });
 
@@ -37,11 +38,11 @@ app.get("/cart", (req, res) => {
   res.render("pages/cart", { cart: req.session.cart });
 });
 
-app.get("/thankYou", (req, res) => {
-  res.render("pages/thankYou");
+app.get("/thanks", (req, res) => {
+  res.render("pages/thanks");
 });
 
-app.post("/addToCart", async (req, res) => {
+app.post("/add-to-cart", async (req, res) => {
   console.log(`Session: ${JSON.stringify(req.session)}`);
   try {
     if (!req.session.cart) {
@@ -65,29 +66,28 @@ app.post("/checkout", async (req, res) => {
   try {
     if (!req.session.cart) {
       console.log("Cart is empty");
-      res.status(400).send("Cart is empty");
+      res.status(400).send("No items in cart.");
       return;
     }
     if (req.session.cart.length === 0) {
       console.log("Cart is empty");
-      res.status(400).send("Cart is empty");
+      res.status(400).send("No items in cart.");
       return;
     }
     console.log("Checkout successful, emptying cart");
     req.session.cart = new Array();
-    res.redirect("/thankYou");
+    res.redirect("/thanks");
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
 });
 
-app.post("/removeFromCart", async (req, res) => {
+app.post("/remove-from-cart", async (req, res) => {
   console.log(`Session: ${JSON.stringify(req.session)}`);
   try {
     if (!req.session.cart) {
-      console.log("Cart is empty");
-      res.status(400).send("Cart is empty");
+      res.status(400).send("No items in cart.");
       return;
     }
     const toRemoveName = req.body.productName.replaceAll("_", " ");
